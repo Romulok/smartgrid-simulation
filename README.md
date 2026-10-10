@@ -1,12 +1,20 @@
 # Simulador de Monitoração Multi-Trecho (V41)
 
-Modelo analítico-paramétrico, em um único arquivo HTML/JavaScript (sem dependências além das fontes do Google Fonts), que acompanha a dissertação *Proposta de framework de comunicação para suportar a monitoração de falhas em smart grids* (Romulo Silva Kruta, PPGDT, Lactec/UFPR).
+Modelo analítico-paramétrico em HTML, CSS e JavaScript puros (sem framework nem biblioteca; a única dependência externa são as fontes do Google Fonts), que acompanha a dissertação *Proposta de framework de comunicação para suportar a monitoração de falhas em smart grids* (Romulo Silva Kruta, PPGDT, Lactec/UFPR).
 
 Não é um simulador de eventos discretos: os cinco Setups de referência usam os valores consolidados das tabelas do V41 da dissertação, e a agregação fim a fim é calculada a partir deles.
 
 ## Como usar
 
-Abra `index.html` no navegador. Não há build nem servidor.
+Abra `index.html` no navegador. Não há build nem servidor. Os três arquivos precisam estar na mesma pasta.
+
+## Estrutura
+
+| Arquivo | Conteúdo |
+|---|---|
+| `index.html` | Estrutura da página |
+| `style.css` | Aparência (tema claro e escuro) |
+| `simulador.js` | Modelo de cálculo: dados dos Setups, agregação fim a fim, contagem de KPIs e interface |
 
 ## Origem dos dados (numeração do corpo do V41)
 
@@ -34,6 +42,7 @@ Abra `index.html` no navegador. Não há build nem servidor.
 
 ## Verificação realizada e limites
 
+- A separação do arquivo único original em `index.html`, `style.css` e `simulador.js` foi verificada: o conteúdo recombinado é idêntico ao original, e o DOM renderizado, o texto e 21 interações (listas, controles deslizantes e chaves) coincidem, sem erros de JavaScript.
 - Com os valores padrão (carga 65 %, segurança plena, redundância ativada), a tabela de KPIs reproduz as Tabelas 27 a 29 e a contagem 0/4/2/4/7 da Tabela 34. Teste manual automatizado com Chromium headless (Playwright): sem erros de JavaScript.
 - Os resultados de B, C e D dependem de premissas declaradas na dissertação (taxas de alarme, processamento do DMS, capacidade da portadora NB-IoT).
 - Ainda não foi comparado com o cálculo analítico por tentativa do Setup A (ALOHA).
